@@ -8,22 +8,33 @@ const signinbox = {
     top: 0,
     left: 0, 
     right: 0,
-    'backgroundColor' : '#2d3436'
+    'backgroundColor' : '#fff'
+}
+
+const verticalMiddle = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)"
 }
 
 export default class SignIn extends Component {
+
     login(){
-        alert(process.env.REACT_APP_NAME);
-        window.location.href='http://google.com/gratis/login';
+        window.location.href=`${process.env.REACT_APP_BACKEND_URL}/gratis/login`;
     }
+
     render() {
         return (
-            <div style={signinbox} className="cnavbar">
-                <a type="button" className="btn btn-default" onClick={this.login}>
-                <span className="glyphicon glyphicon-asterisk"></span>
-                    <span className="fa fa-twitter"></span> Sign in GitHub
-                </a>
+            <div style={signinbox}>
+                <div style={verticalMiddle}>
+                <button type="button" className="btn btn-social btn-block" onClick={this.login}>
+                {/* <span className="glyphicon glyphicon-asterisk"></span> */}
+                    <span className="fa fa-github" style={{"margin-right":"10px"}}></span> Sign in GitHub
+                </button>
+                </div>
             </div>
         );
     }
+
 }
