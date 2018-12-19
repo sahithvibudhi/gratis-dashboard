@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
+import AuthComponent from './helpers/AuthComponent';
 
-
-export default class Dashboard extends Component {
+export default class Dashboard extends AuthComponent {
 
     render() {
         return (
-            <h1>Dashboard</h1>
+            <div className="container">
+                <p>
+                    Apps List
+                </p>
+            </div>
         );
     }
 

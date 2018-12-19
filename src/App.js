@@ -4,6 +4,7 @@ import SignIn from './SignIn';
 import Dashboard from './Dashboard';
 import Notfound from './Notfound';
 import Navbar from './Navbar';
+import SignOut from './SignOut';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 class App extends Component {
@@ -15,7 +16,9 @@ class App extends Component {
             <Navbar />
             <Switch>
               <Route exact path="/" component={SignIn} />
+              <Route exact path="/storeToken/:accessToken" component={SignIn} />
               <Route path="/dashboard" component={Dashboard} />
+              <Route path="/signout" component={SignOut} />
               <Route component={Notfound} />
             </Switch>
           </div>
