@@ -12,10 +12,17 @@ export default class AppsList extends Component
     {
         return (
             <div>
-                Apps:
+                <h3 style={{'margin-bottom': '20px'}}>Apps:</h3>
                 {
                     this.props.apps.map(item => {
-                        return (<p>{item.app_name}</p>);
+                        return (
+                            <div className="app-item shadow-sm p-3 mb-5 bg-white rounded">
+                                <h5>{item.app_name}</h5>
+                                <p>{item.app_description}</p>
+                                <p><b>App Id:</b> <kbd>{item['gratis-identifier']}</kbd></p>
+                                <p><b>Secret:</b> <kbd>{item['gratis-secret']}</kbd></p>
+                            </div>
+                        );
                     })
                 }
             </div>

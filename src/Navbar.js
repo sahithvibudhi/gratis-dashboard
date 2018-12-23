@@ -12,8 +12,8 @@ export default class Navbar extends Component {
     render() {
         return (
             <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand">{process.env.REACT_APP_NAME}</a>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+                <a className="navbar-brand mb-0 h1">{process.env.REACT_APP_NAME}</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

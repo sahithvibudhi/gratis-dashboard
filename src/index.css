@@ -9,9 +9,13 @@ body {
 }
 
 .navbar {
-  background-color: white;
+  background-color: white !important;
 }
 
 .fa {
   margin-right: 10px;
+}
+
+.container {
+  margin-top:40px;
 }
