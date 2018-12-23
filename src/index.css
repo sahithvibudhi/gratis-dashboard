@@ -8,6 +8,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.navbar{
+.navbar {
   background-color: white;
+}
+
+.fa {
+  margin-right: 10px;
 }

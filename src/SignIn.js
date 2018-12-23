@@ -48,8 +48,7 @@ export default class SignIn extends Component {
             <div style={signinbox}>
                 <div style={verticalMiddle}>
                 <button type="button" className="btn btn-social btn-block" onClick={this.login}>
-                {/* <span className="glyphicon glyphicon-asterisk"></span> */}
-                    <span className="fa fa-github" style={{"margin-right":"10px"}}></span> Sign in GitHub
+                    <span className="fa fa-github"></span> Sign in GitHub
                 </button>
                 </div>
             </div>
