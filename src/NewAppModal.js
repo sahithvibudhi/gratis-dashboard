@@ -1,33 +1,14 @@
 import React from 'react';
 import Apps from './services/Apps';
+import AppsList from './AppsList';
 
 export default class NewAppModal extends React.Component 
 {
-    constructor(props) {
-        super(props);
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.saveApp = this.saveApp.bind(this);
-        this.state = {
-            app_name : '',
-            app_description : ''
-        }
-    }
-
-    handleInputChange(e) {
-        let data = this.state;
-        data[e.target.name] = e.target.value;
-        this.setState(data);
-    }
-
-    saveApp(e) {
-        e.preventDefault();
-        Apps.create(this.state);
-    }
 
     render() 
     {
         return (
-            <div className="modal fade" id="newAppModalCenter" tabindex="-1" role="dialog" aria-labelledby="newAppModalCenterTitle" aria-hidden="true">
+            <div className="modal fade" id="newAppModalCenter" role="dialog" aria-labelledby="newAppModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
@@ -41,16 +22,16 @@ export default class NewAppModal extends React.Component
                         <input 
                         type="text" 
                         name="app_name" 
-                        onChange={this.handleInputChange} />
+                        onChange={this.props.handleInputChange} />
                         <input 
                         type="text" 
                         name="app_description" 
-                        onChange={this.handleInputChange} />
+                        onChange={this.props.handleInputChange} />
                     </form>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary" onClick={this.saveApp}>Save changes</button>
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal" id="new-app-close-btn">Close</button>
+                        <button type="button" className="btn btn-primary" onClick={this.props.saveApp}>Save changes</button>
                     </div>
                     </div>
                 </div>

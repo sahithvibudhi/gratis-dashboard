@@ -29,17 +29,6 @@ export default class Navbar extends Component {
                     </ul>
                 </div>
             </nav>
-            <div className="cnavbar">
-                <ul>
-                    {/* {
-                        this.state.data.map((item)=>{
-                            return (<li>
-                                <Link to={item.to}>{item.text}</Link>
-                            </li>);
-                        })
-                    } */}
-                </ul>
-            </div>
             </div>
         );
     }

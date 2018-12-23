@@ -6,7 +6,7 @@ export default class Apps
 
     static async create(data) 
     {
-        var data = await axios.post(
+        var resp = await axios.post(
             `${process.env.REACT_APP_BACKEND_URL}/gratis/apps`, 
             data, 
             {
@@ -15,16 +15,20 @@ export default class Apps
                 }
             }
         );
-        return data;
+        return resp;
     }
 
     static async fetch()
     {
-        var data = await axios.
-        get(
-            `${process.env.REACT_APP_BACKEND_URL}/gratis/apps`
+        var resp = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/gratis/apps`, 
+            {
+                headers: {
+                    authorization : TokenHelper.getToken()
+                }
+            }
         );
-        return data;
+        return resp.data.data;
     }
 
 }
