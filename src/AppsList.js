@@ -4,7 +4,8 @@ import Apps from './services/Apps'
 export default class AppsList extends Component 
 {
 
-    componentDidMount() {
+    componentDidMount() 
+    {
         this.props.updateApps();
     }
 
