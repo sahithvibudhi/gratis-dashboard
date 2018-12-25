@@ -21,7 +21,7 @@ export default class Apps
     static async fetch()
     {
         var resp = await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}/gratis/apps`, 
+            `${process.env.REACT_APP_BACKEND_URL}/gratis/apps?sort=-created_at`, 
             {
                 headers: {
                     authorization : TokenHelper.getToken()
