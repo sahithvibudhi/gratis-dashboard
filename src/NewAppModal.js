@@ -1,6 +1,4 @@
 import React from 'react';
-import Apps from './services/Apps';
-import AppsList from './AppsList';
 
 export default class NewAppModal extends React.Component 
 {

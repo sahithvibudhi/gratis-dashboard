@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Apps from './services/Apps'
 
 export default class AppsList extends Component 
 {
