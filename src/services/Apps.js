@@ -1,33 +1,16 @@
-import axios from 'axios';
-import TokenHelper from '../helpers/TokenHelper';
+import RequestHelper from "../helpers/RequestHelper";
 
 export default class Apps 
 {
 
-    static async create(data) 
+    static async create(data)
     {
-        var resp = await axios.post(
-            `${process.env.REACT_APP_BACKEND_URL}/gratis/apps`, 
-            data, 
-            {
-                headers: {
-                    authorization : TokenHelper.getToken()
-                }
-            }
-        );
-        return resp;
+        return await RequestHelper.post('/gratis/apps', data);
     }
 
     static async fetch()
     {
-        var resp = await axios.get(
-            `${process.env.REACT_APP_BACKEND_URL}/gratis/apps?sort=-created_at`, 
-            {
-                headers: {
-                    authorization : TokenHelper.getToken()
-                }
-            }
-        );
+        let resp = await RequestHelper.get('/gratis/apps?sort=-created_at');
         return resp.data.data;
     }
 

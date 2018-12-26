@@ -26,7 +26,7 @@ export default class NewAppModal extends React.Component
                             onChange={this.props.handleInputChange} />
                         </div>
                         <div className="form-group">
-                            <label for="app_description">Email address</label>
+                            <label for="app_description">Description:</label>
                             <input className="form-control" 
                             id="app_description"
                             type="text" 
