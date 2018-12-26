@@ -1,46 +1,87 @@
 import React from 'react';
+import { Button, Modal, Form, Input, Row, Col } from 'antd';
+
+const CollectionCreateForm = Form.create()(
+    // eslint-disable-next-line
+    class extends React.Component {
+      render() {
+        const {
+          visible, onCancel, onCreate, form,
+        } = this.props;
+        const { getFieldDecorator } = form;
+        return (
+          <Modal
+            visible={visible}
+            title="Create a new App"
+            okText="Create"
+            onCancel={onCancel}
+            onOk={onCreate}
+          >
+            <Form layout="vertical">
+              <Form.Item label="App Name:">
+                {getFieldDecorator('app_name', {
+                  rules: [{ required: true, message: 'Please input a name!' }],
+                })(
+                  <Input />
+                )}
+              </Form.Item>
+              <Form.Item label="Description">
+                {getFieldDecorator('app_description')(<Input type="textarea" />)}
+              </Form.Item>
+            </Form>
+          </Modal>
+        );
+      }
+    }
+  );
+  
 
 export default class NewAppModal extends React.Component 
 {
 
+    state = {
+        visible: false,
+    };
+    
+    showModal = () => {
+        this.setState({ visible: true });
+    }
+    
+    handleCancel = () => {
+        this.setState({ visible: false });
+    }
+    
+    handleCreate = () => {
+        const form = this.formRef.props.form;
+        form.validateFields((err, values) => {
+            if (err) {
+              return;
+            }
+            form.resetFields();
+            this.setState({ visible: false });
+            this.props.saveApp(values);
+        });
+    }
+    
+    saveFormRef = (formRef) => {
+        this.formRef = formRef;
+    }
+
     render() 
     {
         return (
-            <div className="modal fade" id="newAppModalCenter" role="dialog" aria-labelledby="newAppModalCenterTitle" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered" role="document">
-                    <div className="modal-content">
-                    {/* <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div> */}
-                    <div className="modal-body">
-                    <form>
-                        <div className="form-group">
-                            <label for="app_name">App Name:</label>
-                            <input className="form-control" 
-                            id="app_name"
-                            type="text" 
-                            name="app_name" 
-                            onChange={this.props.handleInputChange} />
-                        </div>
-                        <div className="form-group">
-                            <label for="app_description">Description:</label>
-                            <input className="form-control" 
-                            id="app_description"
-                            type="text" 
-                            name="app_description" 
-                            onChange={this.props.handleInputChange} />
-                        </div>
-                    </form>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal" id="new-app-close-btn">Close</button>
-                        <button type="button" className="btn btn-primary" onClick={this.props.saveApp}>Create App</button>
-                    </div>
-                    </div>
-                </div>
+            <div>
+                <Row>
+                  <Col span={3} offset={21}>
+                    <Button type="primary" onClick={this.showModal}>Create New App</Button>
+                  </Col>
+                </Row>
+                <CollectionCreateForm
+                    wrappedComponentRef={this.saveFormRef}
+                    visible={this.state.visible}
+                    onCancel={this.handleCancel}
+                    onCreate={this.handleCreate}
+                />
             </div>
         );
     }

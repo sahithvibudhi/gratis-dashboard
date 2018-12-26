@@ -1,6 +1,5 @@
 import React from 'react';
 import AuthComponent from './helpers/AuthComponent';
-import NewGratisAppButton from './NewGratisAppButton';
 import AppsList from './AppsList';
 import Apps from './services/Apps'
 import NewAppModal from './NewAppModal';
@@ -12,7 +11,6 @@ export default class Dashboard extends AuthComponent {
 
     constructor(props) {
         super(props);
-        this.handleInputChange = this.handleInputChange.bind(this);
         this.saveApp = this.saveApp.bind(this);
         this.updateApps = this.updateApps.bind(this);
         this.state = {
@@ -34,19 +32,10 @@ export default class Dashboard extends AuthComponent {
 
     }
 
-    handleInputChange(e) {
-        let data = this.state;
-        let new_app = this.state.new_app_data;
-        new_app[e.target.name] = e.target.value;
-        data.new_app_data = new_app;
-        this.setState(data);
-    }
-
-    saveApp(e) {
-        e.preventDefault();
-        Apps.create(this.state.new_app_data);
-        document.getElementById('new-app-close-btn').click();
+    saveApp(data) {
+        Apps.create(data);
         this.updateApps();
+        this.showSuccessNotification();
     }
 
     async updateApps() 
@@ -54,16 +43,15 @@ export default class Dashboard extends AuthComponent {
         let apps = await Apps.fetch();
         let data = this.state;
         data.apps = apps
+        console.log(data);
         this.setState(data);
-        this.showSuccessNotification();
     }
 
     render() {
         return (
             <div className="container">
-                <NewGratisAppButton />
-                <AppsList updateApps={this.updateApps} apps={this.state.apps}/>
                 <NewAppModal handleInputChange={this.handleInputChange} saveApp={this.saveApp}/>
+                <AppsList updateApps={this.updateApps} apps={this.state.apps}/>
                 <ToastContainer />
             </div>
         );
