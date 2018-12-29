@@ -8,7 +8,7 @@ export default class Navbar extends Component {
         if(window.location.pathname==='/')
             this.state = { data : [] };
         else
-            this.state = { data : [{icon:'appstore-o', to:'/dashboard', text:'Dashboard'},{icon:'appstore-o', to:'/apps', text:'Plugins'},{icon:'appstore-o', to:'/signout', text:'Signout'}] };
+            this.state = { data : [{icon:'plus', to:'/dashboard', text:'Apps'},{icon:'appstore-o', to:'/apps', text:'Plugins'},{icon:'pie-chart', to:'/stats', text:'Stats'},{icon:'logout', to:'/signout', text:'Signout'}] };
     }
     render() {
         return (
