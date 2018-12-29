@@ -3,7 +3,6 @@ import AuthComponent from './helpers/AuthComponent';
 import AppsList from './AppsList';
 import Apps from './services/Apps'
 import NewAppModal from './NewAppModal';
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { message } from 'antd';
 
@@ -23,20 +22,10 @@ export default class Dashboard extends AuthComponent {
         }
     }
 
-    showSuccessNotification()
-    {
-        // toast("Default Notification !");
-
-        toast.success("New App Created", {
-            position: toast.POSITION.BOTTOM_RIGHT
-        });
-
-    }
-
     saveApp(data) {
         Apps.create(data);
         this.updateApps();
-        this.showSuccessNotification();
+        message.success("New App Created.");
     }
 
     async updateApps() 
@@ -60,7 +49,6 @@ export default class Dashboard extends AuthComponent {
             <div className="container">
                 <NewAppModal handleInputChange={this.handleInputChange} saveApp={this.saveApp}/>
                 <AppsList updateApps={this.updateApps} apps={this.state.apps} deleteApp={this.deleteApp}/>
-                <ToastContainer />
             </div>
         );
     }
