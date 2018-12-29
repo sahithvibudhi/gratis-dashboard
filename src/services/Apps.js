@@ -14,4 +14,9 @@ export default class Apps
         return resp.data.data;
     }
 
+    static async delete(_id)
+    {
+        await RequestHelper.delete(`/gratis/apps?_id=${_id}`);
+    }
+
 }

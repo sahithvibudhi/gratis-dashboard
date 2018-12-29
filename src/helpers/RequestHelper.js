@@ -33,4 +33,12 @@ export default class RequestHelper
         );
     }
 
+    static async delete(url)
+    {
+        return await axios.delete(
+            this.getUrl(url),
+            this.headers
+        );
+    }
+
 }

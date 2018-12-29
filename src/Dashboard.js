@@ -5,6 +5,7 @@ import Apps from './services/Apps'
 import NewAppModal from './NewAppModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { message } from 'antd';
 
 
 export default class Dashboard extends AuthComponent {
@@ -47,11 +48,18 @@ export default class Dashboard extends AuthComponent {
         this.setState(data);
     }
 
+    async deleteApp(_id)
+    {
+        await Apps.delete(_id);
+        message.success('Done');
+        this.updateApps();
+    }
+
     render() {
         return (
             <div className="container">
                 <NewAppModal handleInputChange={this.handleInputChange} saveApp={this.saveApp}/>
-                <AppsList updateApps={this.updateApps} apps={this.state.apps}/>
+                <AppsList updateApps={this.updateApps} apps={this.state.apps} deleteApp={this.deleteApp}/>
                 <ToastContainer />
             </div>
         );
