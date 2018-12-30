@@ -31,7 +31,7 @@ class App extends Component {
                 Sahith
               </Avatar>
             </Header>
-            <Content style={{ padding: '24px 16px 10px', overflow: 'initial', background: '#fff', marginBottom: '70px' }}>
+            <Content style={{ padding: '24px 16px 10px', overflow: 'initial', background: '#fff'}}>
                 <div>
                   <Switch>
                     <Route exact path="/" component={SignIn} />

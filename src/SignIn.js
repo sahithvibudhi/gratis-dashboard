@@ -20,17 +20,21 @@ const verticalMiddle = {
   transform  : "translate(-50%, -50%)"
 }
 
-export default class SignIn extends Component {
+export default class SignIn extends Component 
+{
 
-    login(){
+    login()
+    {
         window.location.href=`${process.env.REACT_APP_BACKEND_URL}/gratis/login`;
     }
 
-    hasToken() {
+    hasToken() 
+    {
         return this.props.match.params.accessToken;
     }
 
-    render() {
+    render() 
+    {
         let token = this.hasToken();
         // backend just sent a new token
         if(token)
