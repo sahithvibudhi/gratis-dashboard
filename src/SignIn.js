@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import TokenHelper from './helpers/TokenHelper';
-// import './Signin.css';
+import { Button, Icon } from 'antd';
 
 const signinbox = {
     height   : '100vh',
@@ -51,9 +51,9 @@ export default class SignIn extends Component
         return (
             <div style={signinbox}>
                 <div style={verticalMiddle}>
-                <button type="button" className="btn btn-social btn-block" onClick={this.login}>
-                    <span className="fa fa-github"></span> Sign in GitHub
-                </button>
+                <Button onClick={this.login}>
+                    <Icon type="github" /> Sign in
+                </Button>
                 </div>
             </div>
         );
