@@ -7,7 +7,7 @@ import Notfound from './Notfound';
 import Navbar from './Navbar';
 import SignOut from './SignOut';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { Layout, Avatar } from 'antd';
+import { Layout, Avatar, Icon } from 'antd';
 
 const {
   Header, Content, Footer, Sider,
@@ -31,7 +31,7 @@ class App extends Component {
                 Sahith
               </Avatar>
             </Header>
-            <Content style={{ padding: '24px 16px 10px', overflow: 'initial', background: '#fff' }}>
+            <Content style={{ padding: '24px 16px 10px', overflow: 'initial', background: '#fff', marginBottom: '70px' }}>
                 <div>
                   <Switch>
                     <Route exact path="/" component={SignIn} />
@@ -42,8 +42,8 @@ class App extends Component {
                   </Switch>
                 </div>
             </Content>
-            <Footer style={{ textAlign: 'center' }}>
-              Gratis
+            <Footer style={{ textAlign: 'center', position: 'fixed', bottom: 0, right: 0, left: 0 }}>
+              create with <Icon type="heart" theme="filled" style={{ color: 'hotpink', padding: '8px' }}/> by Gratis Team.
             </Footer>
           </Layout>
         </Layout>
