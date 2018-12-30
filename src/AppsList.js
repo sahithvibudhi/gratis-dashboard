@@ -27,12 +27,12 @@ export default class AppsList extends Component
                 <List.Item
                     actions={
                         [
-                            <Icon type="edit" theme="twoTone"/>, 
+                            <Icon type="edit" theme="twoTone" onClick={this.props.editApp}/>, 
                             <Popconfirm title="Are you sure delete this app?" onConfirm={() => this.props.deleteApp(item._id)} onCancel={this.cancel} okText="Yes" cancelText="No">
                                 <Icon type="delete"   theme="twoTone" twoToneColor="#eb2f96"/>
                             </Popconfirm>
                         ]
-                        }
+                    }
                 >
                     <List.Item.Meta
                     title={<a href="https://ant.design">{item.app_name}</a>}
