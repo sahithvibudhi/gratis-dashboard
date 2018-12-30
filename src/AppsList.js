@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { List, Icon, Popconfirm, Tooltip, message, Popover, Button } from 'antd';
+import { List, Icon, Popconfirm, Tooltip, Popover } from 'antd';
 
 export default class AppsList extends Component 
 {
@@ -47,10 +47,10 @@ export default class AppsList extends Component
                                 }
                                 title="Credentials"
                                 trigger="click">
-                                <a type="primary">show credentials</a>
+                                <a href="javascript::void(0)" type="primary">show credentials</a>
                             </Popover>,
                             <Tooltip placement="leftBottom" title="Edit App">
-                                <Icon type="edit" theme="twoTone" onClick={this.props.editApp}/>
+                                <Icon type="edit" theme="twoTone" onClick={() => this.props.editApp(item)}/>
                             </Tooltip>, 
                             <Tooltip placement="rightBottom" title="Delete App">
                                 <Popconfirm title="Are you sure delete this app?" onConfirm={() => this.props.deleteApp(item._id)} onCancel={this.cancel} okText="Yes" cancelText="No">

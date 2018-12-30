@@ -19,4 +19,9 @@ export default class Apps
         await RequestHelper.delete(`/gratis/apps?_id=${_id}`);
     }
 
+    static async update(_id, data)
+    {
+        await RequestHelper.update(`/gratis/apps?_id=${_id}`, data);
+    }
+
 }

@@ -41,4 +41,13 @@ export default class RequestHelper
         );
     }
 
+    static async update(url, data)
+    {
+        return await axios.put(
+            this.getUrl(url),
+            data,
+            this.headers
+        );
+    }
+
 }

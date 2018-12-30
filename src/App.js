@@ -43,7 +43,7 @@ class App extends Component {
                 </div>
             </Content>
             <Footer style={{ textAlign: 'center', position: 'fixed', bottom: 0, right: 0, left: 0 }}>
-              create with <Icon type="heart" theme="filled" style={{ color: 'hotpink', padding: '8px' }}/> by Gratis Team.
+              built with <Icon type="heart" theme="filled" style={{ color: 'hotpink', padding: '8px' }}/> by Gratis Team.
             </Footer>
           </Layout>
         </Layout>

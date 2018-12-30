@@ -15,12 +15,14 @@ export default class Dashboard extends AuthComponent {
         this.updateApps = this.updateApps.bind(this);
         this.closeEditAppDrawer = this.closeEditAppDrawer.bind(this);
         this.openEditAppDrawer = this.openEditAppDrawer.bind(this);
+        this.editApp = this.editApp.bind(this);
         this.state = {
             new_app_data : {
                 app_name : '',
                 app_description : ''
             },
             edit_app_drawer_visible : false,
+            editing_item : {},
             apps : []
         }
     }
@@ -36,7 +38,6 @@ export default class Dashboard extends AuthComponent {
         let apps = await Apps.fetch();
         let data = this.state;
         data.apps = apps
-        console.log(data);
         this.setState(data);
     }
 
@@ -47,6 +48,13 @@ export default class Dashboard extends AuthComponent {
         this.updateApps();
     }
 
+    async editApp(_id, data)
+    {
+        await Apps.update(_id, data);
+        message.success('Updated the App');
+        this.updateApps();
+    }
+
     closeEditAppDrawer()
     {
         let data = this.state;
@@ -54,10 +62,12 @@ export default class Dashboard extends AuthComponent {
         this.setState(data);
     }
 
-    openEditAppDrawer()
+    openEditAppDrawer(item)
     {
         let data = this.state;
         data.edit_app_drawer_visible = true;
+        data.editing_item = item;
+        console.log(item);
         this.setState(data);
     }
 
@@ -66,7 +76,7 @@ export default class Dashboard extends AuthComponent {
             <div className="container">
                 <NewAppModal handleInputChange={this.handleInputChange} saveApp={this.saveApp}/>
                 <AppsList updateApps={this.updateApps} apps={this.state.apps} deleteApp={this.deleteApp} editApp={this.openEditAppDrawer}/>
-                <AppMoreOptions edit_apps_drawer_visible={this.state.edit_app_drawer_visible} closeEditAppDrawer={this.closeEditAppDrawer} />
+                <AppMoreOptions edit_apps_drawer_visible={this.state.edit_app_drawer_visible} closeEditAppDrawer={this.closeEditAppDrawer} editingItem={this.state.editing_item} editApp={this.editApp}/>
             </div>
         );
     }
