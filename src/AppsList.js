@@ -1,12 +1,23 @@
 import React, {Component} from 'react';
-import { List, Icon, Popconfirm } from 'antd';
+import { List, Icon, Popconfirm, Tooltip, message, Popover, Button } from 'antd';
 
 export default class AppsList extends Component 
 {
-
+    constructor(props)
+    {
+        super(props);
+        this.handleVisibleChange = this.handleVisibleChange.bind(this);
+        this.state = {
+            visible : {}
+        }
+    }
     componentDidMount() 
     {
         this.props.updateApps();
+    }
+
+    handleVisibleChange = (visible) => {
+        this.setState({ visible });
     }
 
     cancel(e)
@@ -19,24 +30,39 @@ export default class AppsList extends Component
         return (
             <List
                 size="small"
-                itemLayout="horizontal"
+                itemLayout="vertical"
                 dataSource={this.props.apps}
                 bordered
-                style={{ "margin-top" : "16px" }}
+                style={{ marginTop : "16px" }}
                 renderItem={item => (
                 <List.Item
                     actions={
                         [
-                            <Icon type="edit" theme="twoTone" onClick={this.props.editApp}/>, 
-                            <Popconfirm title="Are you sure delete this app?" onConfirm={() => this.props.deleteApp(item._id)} onCancel={this.cancel} okText="Yes" cancelText="No">
-                                <Icon type="delete"   theme="twoTone" twoToneColor="#eb2f96"/>
-                            </Popconfirm>
+                            <Popover
+                                content={
+                                    <div>
+                                        <p><b>gratis-identifier:</b> <kbd>{item['gratis-identifier']}</kbd></p>
+                                        <p><b>gratis-secret:</b> <code>{item['gratis-secret']}</code></p>
+                                    </div>
+                                }
+                                title="Credentials"
+                                trigger="click">
+                                <a type="primary">show credentials</a>
+                            </Popover>,
+                            <Tooltip placement="leftBottom" title="Edit App">
+                                <Icon type="edit" theme="twoTone" onClick={this.props.editApp}/>
+                            </Tooltip>, 
+                            <Tooltip placement="rightBottom" title="Delete App">
+                                <Popconfirm title="Are you sure delete this app?" onConfirm={() => this.props.deleteApp(item._id)} onCancel={this.cancel} okText="Yes" cancelText="No">
+                                    <Icon type="delete"   theme="twoTone" twoToneColor="#eb2f96"/>
+                                </Popconfirm>
+                            </Tooltip>
                         ]
                     }
                 >
                     <List.Item.Meta
-                    title={<a href="https://ant.design">{item.app_name}</a>}
-                    description={item.app_description}
+                        title={item.app_name}
+                        description={item.app_description} 
                     />
                 </List.Item>
                 )}

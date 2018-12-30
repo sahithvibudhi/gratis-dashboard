@@ -7,7 +7,7 @@ import Notfound from './Notfound';
 import Navbar from './Navbar';
 import SignOut from './SignOut';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { Layout } from 'antd';
+import { Layout, Avatar } from 'antd';
 
 const {
   Header, Content, Footer, Sider,
@@ -26,7 +26,11 @@ class App extends Component {
             <Navbar />
           </Sider>
           <Layout style={{ marginLeft: 200 }}>
-            <Header style={{ background: '#fff', padding: 0 }} />
+            <Header style={{ background: '#fff', padding: 0 }} >
+              <Avatar style={{ backgroundColor: '#0984e3', verticalAlign: 'middle' }} size="large">
+                Sahith
+              </Avatar>
+            </Header>
             <Content style={{ padding: '24px 16px 10px', overflow: 'initial', background: '#fff' }}>
                 <div>
                   <Switch>
